@@ -1,6 +1,5 @@
 package eu.exposit.DeliveryService.repositories;
 
-import eu.exposit.DeliveryService.DataStorage.AbstractDatabase;
 import eu.exposit.DeliveryService.DataStorage.ClientDatabase;
 import eu.exposit.DeliveryService.api.repositories.ClientRepository;
 import eu.exposit.DeliveryService.model.Client;
