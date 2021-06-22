@@ -1,7 +1,5 @@
 package eu.exposit.deliveryservice.utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import eu.exposit.deliveryservice.datastorage.BookingDatabase;
@@ -90,8 +88,4 @@ public class SerializationUtil {
         }
     }
 
-    public static void main(String[] args) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        System.out.println(objectMapper.writeValueAsString(new Client("qwe", "qwe", "213")));
-    }
 }
