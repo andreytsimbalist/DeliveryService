@@ -1,6 +1,15 @@
 package eu.exposit.DeliveryService.intializers;
 
-import eu.exposit.DeliveryService.actions.*;
+import eu.exposit.DeliveryService.actions.booking.CreateBookingAction;
+import eu.exposit.DeliveryService.actions.booking.DisplayBookingsAction;
+import eu.exposit.DeliveryService.actions.client.DeleteClientAction;
+import eu.exposit.DeliveryService.actions.client.DisplayClientsAction;
+import eu.exposit.DeliveryService.actions.client.RegisterClientAction;
+import eu.exposit.DeliveryService.actions.client.UpdateClientAction;
+import eu.exposit.DeliveryService.actions.menu.ExitAction;
+import eu.exposit.DeliveryService.actions.menu.ToSubmenuAction;
+import eu.exposit.DeliveryService.actions.product.*;
+import eu.exposit.DeliveryService.actions.shop.*;
 import eu.exposit.DeliveryService.menu.Menu;
 import eu.exposit.DeliveryService.menu.MenuContext;
 import eu.exposit.DeliveryService.menu.MenuItem;

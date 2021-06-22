@@ -1,4 +1,4 @@
-package eu.exposit.DeliveryService.actions;
+package eu.exposit.DeliveryService.actions.product;
 
 import eu.exposit.DeliveryService.api.actions.Action;
 import eu.exposit.DeliveryService.controllers.ProductController;
@@ -6,19 +6,22 @@ import eu.exposit.DeliveryService.model.Product;
 import eu.exposit.DeliveryService.model.enums.Category;
 import eu.exposit.DeliveryService.utils.ConsoleUtil;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class SearchProductByCategoryAction implements Action {
+public class CreateProductAction implements Action {
 
     @Override
     public void execute(int index) throws Exception {
 
         Scanner scanner = ConsoleUtil.getScanner();
+        scanner.nextLine();
+
+        Product product = new Product();
+        System.out.print("\nНазвание нового продукта: ");
+        product.setName(scanner.nextLine());
+
         Category[] values = Category.values();
-        List<Category> categories = new ArrayList<>();
 
         int choice;
         while (true) {
@@ -32,25 +35,15 @@ public class SearchProductByCategoryAction implements Action {
                 break;
             }
             try {
-                categories.add(values[choice - 1]);
+                product.getCategories().add(values[choice - 1]);
             } catch (IndexOutOfBoundsException exception) {
                 System.out.println("\nТакого пункта нет!\n");
             }
         }
 
-        categories = categories.stream().distinct().collect(Collectors.toList());
+        product.setCategories(product.getCategories().stream().distinct().collect(Collectors.toList()));
 
-        boolean isContain = false;
-        for (Product product : ProductController.getInstance().getAll()) {
-            if (product.getCategories().containsAll(categories)) {
-                System.out.println(product);
-                isContain = true;
-            }
-        }
-
-        if (!isContain){
-            System.out.println("\nПродуктов в заданных категориях нет.");
-        }
+        ProductController.getInstance().create(product);
 
     }
 

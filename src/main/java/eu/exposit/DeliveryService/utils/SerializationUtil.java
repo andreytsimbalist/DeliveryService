@@ -6,10 +6,7 @@ import eu.exposit.DeliveryService.DataStorage.BookingDatabase;
 import eu.exposit.DeliveryService.DataStorage.ClientDatabase;
 import eu.exposit.DeliveryService.DataStorage.ProductDatabase;
 import eu.exposit.DeliveryService.DataStorage.ShopDatabase;
-import eu.exposit.DeliveryService.model.Client;
-import eu.exposit.DeliveryService.model.Product;
-import eu.exposit.DeliveryService.model.Shop;
-import eu.exposit.DeliveryService.model.Stock;
+import eu.exposit.DeliveryService.model.*;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -37,7 +34,7 @@ public class SerializationUtil {
         productDatabase.setIdSequence((long) productDatabase.getEntities().size());
 
         ShopDatabase shopDatabase = ShopDatabase.getInstance();
-        shopDatabase.setEntities(getFromJson(shopPath, new TypeToken<List<Shop>>() {
+        shopDatabase.setEntities( getFromJson(shopPath, new TypeToken<List<Shop>>() {
         }.getType()));
         shopDatabase.setIdSequence((long) shopDatabase.getEntities().size());
 

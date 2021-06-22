@@ -1,4 +1,4 @@
-package eu.exposit.DeliveryService.actions;
+package eu.exposit.DeliveryService.actions.booking;
 
 import eu.exposit.DeliveryService.api.actions.Action;
 import eu.exposit.DeliveryService.controllers.BookingController;
