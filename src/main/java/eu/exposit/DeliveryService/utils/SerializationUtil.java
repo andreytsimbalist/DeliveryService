@@ -19,10 +19,10 @@ import java.util.List;
 public class SerializationUtil {
 
     private static final Gson gson = new Gson();
-    private static final String clientPath = "eu/exposit/DeliveryService/save/ClientDatabase.json";
-    private static final String shopPath = "eu/exposit/DeliveryService/save/ShopDatabase.json";
-    private static final String productPath = "eu/exposit/DeliveryService/save/ProductDatabase.json";
-    private static final String bookingPath = "eu/exposit/DeliveryService/save/BookingDatabase.json";
+    private static final String clientPath = "src/main/java/eu/exposit/DeliveryService/save/ClientDatabase.json";
+    private static final String shopPath = "src/main/java/eu/exposit/DeliveryService/save/ShopDatabase.json";
+    private static final String productPath = "src/main/java/eu/exposit/DeliveryService/save/ProductDatabase.json";
+    private static final String bookingPath = "src/main/java/eu/exposit/DeliveryService/save/BookingDatabase.json";
 
     public static void deserialization() {
 
