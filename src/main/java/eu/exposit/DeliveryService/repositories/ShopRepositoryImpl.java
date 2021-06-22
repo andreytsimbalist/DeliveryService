@@ -1,8 +1,6 @@
 package eu.exposit.DeliveryService.repositories;
 
-import eu.exposit.DeliveryService.DataStorage.ClientDatabase;
 import eu.exposit.DeliveryService.DataStorage.ShopDatabase;
-import eu.exposit.DeliveryService.api.repositories.ClientRepository;
 import eu.exposit.DeliveryService.api.repositories.ShopRepository;
 import eu.exposit.DeliveryService.model.Shop;
 
