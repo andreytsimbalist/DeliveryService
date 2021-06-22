@@ -1,11 +1,6 @@
 package eu.exposit.DeliveryService.DataStorage;
 
 import eu.exposit.DeliveryService.model.Client;
-import eu.exposit.DeliveryService.model.Shop;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.List;
 
 public class ClientDatabase extends AbstractDatabase<Client> {
 
