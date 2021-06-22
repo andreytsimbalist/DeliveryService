@@ -18,6 +18,14 @@ public abstract class CrudRepositoryImpl<T extends BaseEntity> implements CrudRe
     }
 
     @Override
+    public Optional<T> get(T entity) {
+        return abstractDatabase.getEntities()
+                .stream()
+                .filter(temp -> temp.equals(entity))
+                .findFirst();
+    }
+
+    @Override
     public Optional<T> getById(Long id) {
         return abstractDatabase.getEntities()
                 .stream()
@@ -34,6 +42,16 @@ public abstract class CrudRepositoryImpl<T extends BaseEntity> implements CrudRe
     public T update(T entity) {
         int index = abstractDatabase.getEntities().indexOf(entity);
         return abstractDatabase.getEntities().set(index, entity);
+    }
+
+    @Override
+    public void delete(T entity) throws NoRecordException {
+        T entityToDelete = abstractDatabase.getEntities()
+                .stream()
+                .filter(temp -> temp.equals(entity))
+                .findFirst()
+                .orElseThrow(NoRecordException::new);
+        abstractDatabase.getEntities().remove(entityToDelete);
     }
 
     @Override
