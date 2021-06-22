@@ -1,7 +1,6 @@
 package eu.exposit.DeliveryService.DataStorage;
 
 import eu.exposit.DeliveryService.model.BaseEntity;
-import eu.exposit.DeliveryService.model.Shop;
 import lombok.Getter;
 import lombok.Setter;
 
