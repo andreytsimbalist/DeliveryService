@@ -4,7 +4,7 @@ public class NoRecordException extends Exception {
 
     @Override
     public String getMessage() {
-        return "No such record in database.";
+        return "\nТакой записи в базе данных нет.";
     }
 
 }
