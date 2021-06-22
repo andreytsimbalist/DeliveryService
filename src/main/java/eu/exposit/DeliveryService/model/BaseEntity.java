@@ -9,7 +9,7 @@ import java.util.Objects;
 @Setter
 public abstract class BaseEntity {
 
-    private Long id;
+    protected Long id;
 
     @Override
     public boolean equals(Object o) {
