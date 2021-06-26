@@ -6,6 +6,10 @@ import java.util.Scanner;
 
 public class ConsoleUtil {
 
+    private ConsoleUtil() {
+
+    }
+
     @Getter
     private static final Scanner scanner = new Scanner(System.in);
 

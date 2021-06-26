@@ -5,6 +5,10 @@ import lombok.Setter;
 
 public class MenuContext {
 
+    private MenuContext() {
+
+    }
+
     @Getter
     @Setter
     private static Menu currentMenu;

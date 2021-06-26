@@ -15,6 +15,10 @@ import java.util.List;
 
 public class SerializationUtil {
 
+    private SerializationUtil() {
+
+    }
+
     private static final Gson gson = new Gson();
     private static final String clientPath = "src/main/java/eu/exposit/DeliveryService/save/ClientDatabase.json";
     private static final String shopPath = "src/main/java/eu/exposit/DeliveryService/save/ShopDatabase.json";
