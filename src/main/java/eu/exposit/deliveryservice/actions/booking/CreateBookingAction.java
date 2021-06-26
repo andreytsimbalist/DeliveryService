@@ -32,14 +32,14 @@ public class CreateBookingAction implements Action {
         int choice;
         System.out.println("\nВыберите номер с вашими данными");
         for (int i = 0; i < clientController.getAll().size(); i++) {
-            System.out.println((i + 1) + ". " + clientController.getAll().get(i));
+            System.out.println((i + 1) + " " + clientController.getAll().get(i));
         }
         System.out.print("Ваш выбор: ");
         choice = scanner.nextInt();
         booking.setClient(new Client(clientController.getAll().get(choice - 1)));
 
         while (true) {
-
+            System.out.println("\nВыберите номер товара");
             for (int i = 0; i < productController.getAll().size(); i++) {
                 System.out.println("\n" + (i + 1) + productController.getAll().get(i));
             }
@@ -60,6 +60,11 @@ public class CreateBookingAction implements Action {
                         break;
                     }
                 }
+            }
+
+            if (shops.size() == 0) {
+                System.out.println("\nНет магазинов с таким продуктом.");
+                return;
             }
 
             for (int i = 0; i < shops.size(); i++) {
