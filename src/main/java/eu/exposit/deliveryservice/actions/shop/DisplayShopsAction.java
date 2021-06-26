@@ -17,9 +17,7 @@ public class DisplayShopsAction implements Action {
             throw new ListIsEmptyException();
         }
 
-        for (Shop shop : shops) {
-            System.out.println(shop);
-        }
+        shops.forEach(System.out::println);
     }
 
 }

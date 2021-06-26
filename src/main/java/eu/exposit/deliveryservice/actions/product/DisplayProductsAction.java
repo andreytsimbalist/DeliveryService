@@ -16,8 +16,7 @@ public class DisplayProductsAction implements Action {
             throw new ListIsEmptyException();
         }
 
-        for (Product product : products) {
-            System.out.println(product.toString());
-        }
+        products.forEach(System.out::println);
+
     }
 }

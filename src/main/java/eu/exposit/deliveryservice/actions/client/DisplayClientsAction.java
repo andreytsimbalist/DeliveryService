@@ -18,9 +18,7 @@ public class DisplayClientsAction implements Action {
             throw new ListIsEmptyException();
         }
 
-        for (Client client : clients) {
-            System.out.println(client);
-        }
+        clients.forEach(System.out::println);
 
     }
 
