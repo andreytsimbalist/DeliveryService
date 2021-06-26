@@ -3,6 +3,7 @@ package eu.exposit.deliveryservice.controllers;
 import eu.exposit.deliveryservice.api.services.ShopService;
 import eu.exposit.deliveryservice.exceptions.NoRecordException;
 import eu.exposit.deliveryservice.exceptions.RecordAlreadyExistsException;
+import eu.exposit.deliveryservice.model.Product;
 import eu.exposit.deliveryservice.model.Shop;
 import eu.exposit.deliveryservice.model.Stock;
 import eu.exposit.deliveryservice.model.enums.SortKey;
@@ -45,6 +46,10 @@ public class ShopController {
 
     public List<Stock> getStocksSortedByKey(SortKey sortKey) {
         return shopService.sortByKey(sortKey);
+    }
+
+    public void deleteProductFromShops(Product product) {
+        shopService.deleteProducts(product);
     }
 
 }

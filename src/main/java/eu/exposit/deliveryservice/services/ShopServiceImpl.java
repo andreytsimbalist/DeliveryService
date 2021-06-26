@@ -1,7 +1,9 @@
 package eu.exposit.deliveryservice.services;
 
+import eu.exposit.deliveryservice.api.repositories.ShopRepository;
 import eu.exposit.deliveryservice.api.services.ShopService;
 import eu.exposit.deliveryservice.exceptions.RecordAlreadyExistsException;
+import eu.exposit.deliveryservice.model.Product;
 import eu.exposit.deliveryservice.model.Shop;
 import eu.exposit.deliveryservice.model.Stock;
 import eu.exposit.deliveryservice.model.enums.SortKey;
@@ -14,8 +16,11 @@ import java.util.stream.Collectors;
 
 public class ShopServiceImpl extends CrudServiceImpl<Shop> implements ShopService {
 
+    private final ShopRepository shopRepository;
+
     private ShopServiceImpl() {
         crudRepository = ShopRepositoryImpl.getInstance();
+        shopRepository = (ShopRepository) crudRepository;
     }
 
     private static ShopService instance;
@@ -29,7 +34,7 @@ public class ShopServiceImpl extends CrudServiceImpl<Shop> implements ShopServic
 
     @Override
     public Shop create(Shop shop) throws RecordAlreadyExistsException {
-        for (Shop temp : crudRepository.getAll()) {
+        for (Shop temp : shopRepository.getAll()) {
             if (temp.getName().equalsIgnoreCase(shop.getName()) &&
                     temp.getAddress().equalsIgnoreCase(shop.getAddress())) {
                 throw new RecordAlreadyExistsException();
@@ -40,7 +45,7 @@ public class ShopServiceImpl extends CrudServiceImpl<Shop> implements ShopServic
 
     public List<Stock> sortByKey(SortKey sortKey) {
         List<Stock> stocks = new ArrayList<>();
-        for (Shop shop : crudRepository.getAll()) {
+        for (Shop shop : shopRepository.getAll()) {
             stocks.addAll(shop.getStocks());
         }
         switch (sortKey) {
@@ -52,6 +57,11 @@ public class ShopServiceImpl extends CrudServiceImpl<Shop> implements ShopServic
                 break;
         }
         return stocks;
+    }
+
+    @Override
+    public void deleteProducts(Product product) {
+        shopRepository.deleteProducts(product);
     }
 
 }

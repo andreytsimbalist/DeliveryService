@@ -1,7 +1,9 @@
 package eu.exposit.deliveryservice.repositories;
 
+import eu.exposit.deliveryservice.controllers.ShopController;
 import eu.exposit.deliveryservice.datastorage.ShopDatabase;
 import eu.exposit.deliveryservice.api.repositories.ShopRepository;
+import eu.exposit.deliveryservice.model.Product;
 import eu.exposit.deliveryservice.model.Shop;
 
 public class ShopRepositoryImpl extends CrudRepositoryImpl<Shop> implements ShopRepository {
@@ -17,6 +19,13 @@ public class ShopRepositoryImpl extends CrudRepositoryImpl<Shop> implements Shop
             instance = new ShopRepositoryImpl();
         }
         return instance;
+    }
+
+    @Override
+    public void deleteProducts(Product product) {
+        for (Shop shop : ShopController.getInstance().getAll()) {
+            shop.getStocks().removeIf(stock -> stock.getProduct().equals(product));
+        }
     }
 
 }

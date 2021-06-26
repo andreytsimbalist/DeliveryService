@@ -5,7 +5,6 @@ import eu.exposit.deliveryservice.controllers.ProductController;
 import eu.exposit.deliveryservice.controllers.ShopController;
 import eu.exposit.deliveryservice.exceptions.ListIsEmptyException;
 import eu.exposit.deliveryservice.model.Product;
-import eu.exposit.deliveryservice.model.Shop;
 import eu.exposit.deliveryservice.utils.ConsoleUtil;
 
 import java.util.List;
@@ -27,13 +26,11 @@ public class DeleteProductAction implements Action {
         }
 
         System.out.print("\nНомер удаляемой записи: ");
-        Product productToDelete = products.get(ConsoleUtil.getScanner().nextInt() - 1);
+        Product product = products.get(ConsoleUtil.getScanner().nextInt() - 1);
 
-        for (Shop shop : ShopController.getInstance().getAll()) {
-            shop.getStocks().removeIf(stock -> stock.getProduct().equals(productToDelete));
-        }
+        ShopController.getInstance().deleteProductFromShops(product);
 
-        productController.delete(productToDelete);
+        productController.delete(product);
 
     }
 
