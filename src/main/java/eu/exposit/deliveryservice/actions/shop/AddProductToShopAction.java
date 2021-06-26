@@ -47,6 +47,7 @@ public class AddProductToShopAction implements Action {
         System.out.print("Количество: ");
         stock.setCount(scanner.nextInt());
         shop.getStocks().add(stock);
+
         shopController.update(shop);
 
     }
