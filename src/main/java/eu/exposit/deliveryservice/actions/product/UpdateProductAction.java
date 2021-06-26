@@ -7,10 +7,9 @@ import eu.exposit.deliveryservice.model.Product;
 import eu.exposit.deliveryservice.model.enums.Category;
 import eu.exposit.deliveryservice.utils.ConsoleUtil;
 
-import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class UpdateProductAction implements Action {
 
@@ -32,7 +31,7 @@ public class UpdateProductAction implements Action {
 
         System.out.print("\nНомер редактируемой записи: ");
         Product product = products.get(scanner.nextInt() - 1);
-        product.setCategories(new ArrayList<>());
+        product.setCategories(EnumSet.noneOf(Category.class));
         scanner.nextLine();
         System.out.print("Новое название: ");
         product.setName(scanner.nextLine());
@@ -56,7 +55,6 @@ public class UpdateProductAction implements Action {
                 System.out.println("\nТакого пункта нет!\n");
             }
         }
-        product.setCategories(product.getCategories().stream().distinct().collect(Collectors.toList()));
 
         productController.update(product);
 

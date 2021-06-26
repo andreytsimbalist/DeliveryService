@@ -7,7 +7,6 @@ import eu.exposit.deliveryservice.model.enums.Category;
 import eu.exposit.deliveryservice.utils.ConsoleUtil;
 
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class CreateProductAction implements Action {
 
@@ -40,8 +39,6 @@ public class CreateProductAction implements Action {
                 System.out.println("\nТакого пункта нет!\n");
             }
         }
-
-        product.setCategories(product.getCategories().stream().distinct().collect(Collectors.toList()));
 
         ProductController.getInstance().create(product);
 

@@ -6,10 +6,8 @@ import eu.exposit.deliveryservice.model.Product;
 import eu.exposit.deliveryservice.model.enums.Category;
 import eu.exposit.deliveryservice.utils.ConsoleUtil;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.EnumSet;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class SearchProductByCategoryAction implements Action {
 
@@ -18,7 +16,7 @@ public class SearchProductByCategoryAction implements Action {
 
         Scanner scanner = ConsoleUtil.getScanner();
         Category[] values = Category.values();
-        List<Category> categories = new ArrayList<>();
+        EnumSet<Category> categories = EnumSet.noneOf(Category.class);
 
         int choice;
         while (true) {
@@ -37,8 +35,6 @@ public class SearchProductByCategoryAction implements Action {
                 System.out.println("\nТакого пункта нет!\n");
             }
         }
-
-        categories = categories.stream().distinct().collect(Collectors.toList());
 
         boolean isContain = false;
         for (Product product : ProductController.getInstance().getAll()) {

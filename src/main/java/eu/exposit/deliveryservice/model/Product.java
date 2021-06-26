@@ -4,18 +4,17 @@ import eu.exposit.deliveryservice.model.enums.Category;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.EnumSet;
 
 @Getter
 @Setter
 public class Product extends BaseEntity {
 
     private String name;
-    private List<Category> categories;
+    private EnumSet<Category> categories;
 
     public Product() {
-        categories = new ArrayList<>();
+        categories = EnumSet.noneOf(Category.class);
     }
 
     public Product(Product product){
