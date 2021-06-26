@@ -18,16 +18,14 @@ public class Menu {
     public void executeSelectedFunction() {
         try {
             int index = ConsoleUtil.getScanner().nextInt() - 1;
-            try {
-                items.get(index).getAction().execute(index);
-            } catch (IndexOutOfBoundsException exception){
-                System.out.println("\nТакого пункта нет.");
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
+            items.get(index).getAction().execute(index);
+        } catch (IndexOutOfBoundsException exception) {
+            System.out.println("\nТакого пункта нет.");
         } catch (InputMismatchException exception) {
             ConsoleUtil.getScanner().nextLine();
             System.out.println("\nОшибка формата ввода.");
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
         }
     }
 
