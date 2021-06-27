@@ -18,7 +18,6 @@ public class UpdateProductAction implements Action {
         ProductController productController = ProductController.getInstance();
         Scanner scanner = ConsoleUtil.getScanner();
 
-
         List<Product> products = productController.getAll();
 
         if (products.isEmpty()) {
