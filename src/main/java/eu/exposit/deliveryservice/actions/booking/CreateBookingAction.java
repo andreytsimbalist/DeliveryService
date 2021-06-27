@@ -5,6 +5,7 @@ import eu.exposit.deliveryservice.controllers.BookingController;
 import eu.exposit.deliveryservice.controllers.ClientController;
 import eu.exposit.deliveryservice.controllers.ProductController;
 import eu.exposit.deliveryservice.controllers.ShopController;
+import eu.exposit.deliveryservice.exceptions.ListIsEmptyException;
 import eu.exposit.deliveryservice.exceptions.NoRegisteredClientsException;
 import eu.exposit.deliveryservice.exceptions.NotEnoughProductException;
 import eu.exposit.deliveryservice.model.*;
@@ -29,16 +30,20 @@ public class CreateBookingAction implements Action {
             throw new NoRegisteredClientsException();
         }
 
-        int choice;
         System.out.println("\nВыберите номер с вашими данными");
         for (int i = 0; i < clientController.getAll().size(); i++) {
             System.out.println((i + 1) + " " + clientController.getAll().get(i));
         }
         System.out.print("Ваш выбор: ");
-        choice = scanner.nextInt();
+        int choice = scanner.nextInt();
         booking.setClient(new Client(clientController.getAll().get(choice - 1)));
 
         while (true) {
+
+            if (productController.getAll().isEmpty()){
+                throw new ListIsEmptyException();
+            }
+
             System.out.println("\nВыберите номер товара");
             for (int i = 0; i < productController.getAll().size(); i++) {
                 System.out.println("\n" + (i + 1) + productController.getAll().get(i));
