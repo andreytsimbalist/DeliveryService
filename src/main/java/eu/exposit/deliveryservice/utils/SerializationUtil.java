@@ -42,11 +42,6 @@ public class SerializationUtil {
         }.getType()));
         shopDatabase.setIdSequence((long) shopDatabase.getEntities().size());
 
-        BookingDatabase bookingDatabase = BookingDatabase.getInstance();
-        bookingDatabase.setEntities(getFromJson(bookingPath, new TypeToken<List<Shop>>() {
-        }.getType()));
-        bookingDatabase.setIdSequence((long) bookingDatabase.getEntities().size());
-
         for (Product product : productDatabase.getEntities()) {
             for (Shop shop : shopDatabase.getEntities()) {
                 for (Stock stock : shop.getStocks()) {
@@ -57,6 +52,12 @@ public class SerializationUtil {
             }
         }
 
+        BookingDatabase bookingDatabase = BookingDatabase.getInstance();
+        bookingDatabase.setEntities(getFromJson(bookingPath, new TypeToken<List<Shop>>() {
+        }.getType()));
+        bookingDatabase.setIdSequence((long) bookingDatabase.getEntities().size());
+
+
     }
 
     private static <T extends BaseEntity> List<T> getFromJson(String path, Type type) {
@@ -66,6 +67,7 @@ public class SerializationUtil {
             if (!file.createNewFile()) {
                 FileReader fileReader = new FileReader(path);
                 entities = gson.fromJson(fileReader, type);
+                fileReader.close();
             }
             return entities == null ? new ArrayList<>() : entities;
         } catch (IOException ioException) {
@@ -86,7 +88,6 @@ public class SerializationUtil {
     private static <T extends BaseEntity> void writeToJson(String path, List<T> entities) {
         try (FileWriter fileWriter = new FileWriter(path)) {
             fileWriter.write(gson.toJson(entities));
-            fileWriter.flush();
         } catch (Exception e) {
             System.out.println("\nОшибка работы с файлом: " + e.getMessage());
         }
