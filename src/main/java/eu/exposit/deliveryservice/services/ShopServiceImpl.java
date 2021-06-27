@@ -50,7 +50,7 @@ public class ShopServiceImpl extends CrudServiceImpl<Shop> implements ShopServic
         }
         switch (sortKey) {
             case PRICE:
-                stocks = stocks.stream().sorted(Comparator.comparing(Stock::getPrice)).collect(Collectors.toList());
+                stocks.sort(Comparator.comparing(Stock::getPrice));
                 break;
             case NAME:
                 stocks.sort(Comparator.comparing(stock -> stock.getProduct().getName()));
