@@ -3,7 +3,9 @@ package eu.exposit.deliveryservice.actions.shop;
 import eu.exposit.deliveryservice.api.actions.Action;
 import eu.exposit.deliveryservice.controllers.ProductController;
 import eu.exposit.deliveryservice.controllers.ShopController;
+import eu.exposit.deliveryservice.exceptions.ListIsEmptyException;
 import eu.exposit.deliveryservice.exceptions.RecordAlreadyExistsException;
+import eu.exposit.deliveryservice.model.BaseEntity;
 import eu.exposit.deliveryservice.model.Product;
 import eu.exposit.deliveryservice.model.Shop;
 import eu.exposit.deliveryservice.model.Stock;
@@ -22,18 +24,14 @@ public class AddProductToShopAction implements Action {
 
         List<Shop> shops = shopController.getAll();
 
-        for (int i = 0; i < shops.size(); i++) {
-            System.out.println("\n" + (i + 1) + shops.get(i).toString());
-        }
+        displayList(shops);
 
         System.out.print("\nНомер магазина в который нужно добавить продукт: ");
         Shop shop = shops.get(scanner.nextInt() - 1);
 
         List<Product> products = ProductController.getInstance().getAll();
 
-        for (int i = 0; i < products.size(); i++) {
-            System.out.println("\n" + (i + 1) + products.get(i).toString());
-        }
+        displayList(products);
 
         Stock stock = new Stock();
 
@@ -50,6 +48,16 @@ public class AddProductToShopAction implements Action {
 
         shopController.update(shop);
 
+    }
+
+    private <T extends BaseEntity> void displayList(List<T> entity) throws ListIsEmptyException {
+        if (entity.isEmpty()) {
+            throw new ListIsEmptyException();
+        }
+
+        for (int i = 0; i < entity.size(); i++) {
+            System.out.println("\n" + (i + 1) + entity.get(i).toString());
+        }
     }
 
 }

@@ -19,26 +19,14 @@ public class UpdateStockAction implements Action {
 
         List<Shop> shops = shopController.getAll();
 
-        if (shops.isEmpty()) {
-            throw new ListIsEmptyException();
-        }
-
-        for (int i = 0; i < shops.size(); i++) {
-            System.out.println("\n" + (i + 1) + shops.get(i).toString());
-        }
+        displayList(shops);
 
         System.out.print("\nНомер магазина для радобты с товарами: ");
         Shop shop = shops.get(scanner.nextInt() - 1);
 
         List<Stock> stocks = shop.getStocks();
 
-        for (int i = 0; i < stocks.size(); i++) {
-            System.out.println("\n" + (i + 1) + stocks.get(i).toString());
-        }
-
-        if (stocks.isEmpty()){
-            throw new ListIsEmptyException();
-        }
+        displayList(stocks);
 
         System.out.print("\nНомер товара для изменения: ");
         Stock stock = stocks.get(scanner.nextInt() - 1);
@@ -49,6 +37,16 @@ public class UpdateStockAction implements Action {
 
         shopController.update(shop);
 
+    }
+
+    private void displayList(List<?> entity) throws ListIsEmptyException {
+        if (entity.isEmpty()) {
+            throw new ListIsEmptyException();
+        }
+
+        for (int i = 0; i < entity.size(); i++) {
+            System.out.println("\n" + (i + 1) + entity.get(i).toString());
+        }
     }
 
 }
