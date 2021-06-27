@@ -14,7 +14,6 @@ public class RegisterShopAction implements Action {
 
         Scanner scanner = ConsoleUtil.getScanner();
         Shop newShop = new Shop();
-        scanner.nextLine();
 
         System.out.print("\nНазвание магазина: ");
         newShop.setName(scanner.nextLine());

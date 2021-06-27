@@ -13,7 +13,6 @@ public class RegisterClientAction implements Action {
     public void execute(int index) throws Exception {
 
         Scanner scanner = ConsoleUtil.getScanner();
-        scanner.nextLine();
 
         Client newClient = new Client();
 

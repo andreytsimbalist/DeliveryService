@@ -14,7 +14,6 @@ public class CreateProductAction implements Action {
     public void execute(int index) throws Exception {
 
         Scanner scanner = ConsoleUtil.getScanner();
-        scanner.nextLine();
 
         Product product = new Product();
         System.out.print("\nНазвание нового продукта: ");
