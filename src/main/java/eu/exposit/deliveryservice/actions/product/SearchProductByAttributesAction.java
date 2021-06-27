@@ -9,6 +9,7 @@ import eu.exposit.deliveryservice.model.enums.SortKey;
 import eu.exposit.deliveryservice.utils.ConsoleUtil;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public class SearchProductByAttributesAction implements Action {
 
         Category[] values = Category.values();
         List<Stock> stocks = new ArrayList<>();
-        List<Category> categories = new ArrayList<>();
+        EnumSet<Category> categories = EnumSet.noneOf(Category.class);
 
         for (Shop shop : shopController.getAll()) {
             stocks.addAll(shop.getStocks());
@@ -53,8 +54,7 @@ public class SearchProductByAttributesAction implements Action {
                             System.out.println("\nТакого пункта нет!\n");
                         }
                     }
-                    List<Category> finalCategories = categories.stream().distinct().collect(Collectors.toList());
-                    stocks.removeIf(stock -> !stock.getProduct().getCategories().containsAll(finalCategories));
+                    stocks.removeIf(stock -> !stock.getProduct().getCategories().containsAll(categories));
                     break;
                 case 2:
                     System.out.print("\nСумма: ");
